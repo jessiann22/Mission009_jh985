@@ -18,6 +18,9 @@ namespace Mission009_jh985.Components
 
         public IViewComponentResult Invoke()
         {
+
+            ViewBag.Selectedtype = RouteData?.Values["Category"];
+
             var types = repo.Books
                    .Select(x => x.Category)
                    .Distinct()
