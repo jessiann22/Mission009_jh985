@@ -23,7 +23,7 @@ namespace Mission009_jh985.Controllers
         //private BookstoreContext context { get; set; }
         //public HomeController(BookstoreContext temp) => context = temp;
 
-        public IActionResult Index(int pageNum = 1)
+        public IActionResult Index(string projectType, int pageNum = 1)
         {
             int pageSize = 10;
 
@@ -31,6 +31,7 @@ namespace Mission009_jh985.Controllers
             var x = new BooksViewModel
             {
                 Books = repo.Books
+                .Where( b  => b.Category == Category || b.Category == null) //HELPs
                 .OrderBy(b => b.Title)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),

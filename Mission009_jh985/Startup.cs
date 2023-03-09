@@ -57,7 +57,20 @@ namespace Mission009_jh985
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+               name: "typepage",
+               pattern: "{Category}/Page{pageNum}",
+               defaults: new { Controller = "Home", action = "Index" });
+
                 endpoints.MapDefaultControllerRoute();
+
+
+                endpoints.MapControllerRoute(
+                    name: "Paging",
+                    pattern: "Page{pageNum}",
+                    defaults: new { Controller = "Home", action = "Index" });
+
+                    endpoints.MapDefaultControllerRoute();
             });
         }
     }
