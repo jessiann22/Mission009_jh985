@@ -23,7 +23,7 @@ namespace Mission009_jh985.Controllers
         //private BookstoreContext context { get; set; }
         //public HomeController(BookstoreContext temp) => context = temp;
 
-        public IActionResult Index(string projectType, int pageNum = 1)
+        public IActionResult Index(string Category, int pageNum = 1)
         {
             int pageSize = 10;
 

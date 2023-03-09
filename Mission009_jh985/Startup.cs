@@ -62,6 +62,11 @@ namespace Mission009_jh985
                pattern: "{Category}/Page{pageNum}",
                defaults: new { Controller = "Home", action = "Index" });
 
+
+            endpoints.MapControllerRoute("type",
+                "{Category}",
+                new { Controller = "Home", action = "Index", pageNum = 1 });
+
                 endpoints.MapDefaultControllerRoute();
 
 
