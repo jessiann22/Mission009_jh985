@@ -23,4 +23,15 @@
             <li>PageCount: @Model.PageCount</li>
         </ul>
     </div>
+
+    <form method="post" asp-page="/Donate">
+
+        <input type="hidden" asp-for="@Model.Projectid" />
+
+        <span class="card-text">
+            <button type="submit" class="btn btn-success btn-sm float-end"></button>
+        </span>
+    </form>
+
 </div>
+
