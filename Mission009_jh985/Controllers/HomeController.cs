@@ -31,7 +31,7 @@ namespace Mission009_jh985.Controllers
             var x = new BooksViewModel
             {
                 Books = repo.Books
-                .Where( b  => b.Category == Category || b.Category == null) //HELPs
+                .Where(b => b.Category == Category || Category == null) 
                 .OrderBy(b => b.Title)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),

@@ -9,7 +9,7 @@ namespace Mission009_jh985.Models
     {
         public List<BasketLineItem> Items { get; set; }= new List<BasketLineItem>();
 
-        public void AddItem (Book boo, int qty)
+        public virtual void AddItem (Book boo, int qty)
         {
             BasketLineItem line = Items
                 .Where(b => b.Book.BookId == boo.BookId)
@@ -29,6 +29,15 @@ namespace Mission009_jh985.Models
             }
         }
 
+        public virtual void RemoveItem (Book boo) 
+        {
+            Items.RemoveAll(x => x.Book.BookId == boo.BookId);
+        }
+
+        public virtual void ClearBasket()
+        {
+            Items.Clear();
+        }
         public double CalculateTotal()
         {
             double sum = Items.Sum(x => x.Quantity * x.Book.Price);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Mission009_jh985.Infrastructure;
 using Mission009_jh985.Models;
 
 namespace Mission009_jh985.Pages
@@ -11,27 +12,33 @@ namespace Mission009_jh985.Pages
     public class DonateModel : PageModel
     {
         private IBookstoreRepository repo { get; set; }
-
-
-        public DonateModel (IBookstoreRepository temp)
+        public Basket basket { get; set; }
+        public string ReturnUrl { get; set; }
+        public DonateModel (IBookstoreRepository temp, Basket b)
         {
             repo = temp;
+            basket = b;
         }
-        public Basket basket { get; set; }
 
-        public void OnGet()
+        public void OnGet(string returnUrl)
         {
+            ReturnUrl = returnUrl ?? "/";
         }
 
-        public IActionResult OnPost(int bookId)
+        public IActionResult OnPost(int bookId, string returnUrl)
         {
             Book b = repo.Books.FirstOrDefault(x => x.BookId == bookId);
 
-            basket = new Basket();
-
             basket.AddItem(b, 1);
+                
+            return RedirectToPage(new { ReturnUrl = returnUrl });
+        }
 
-            return RedirectToPage();
+        public IActionResult OnPostRemove (int bookId, string returnUrl)
+        {
+            basket.RemoveItem(basket.Items.First(x => x.Book.BookId == bookId).Book);
+
+            return RedirectToPage(new { ReturnUrl = returnUrl });
         }
     }
 }
