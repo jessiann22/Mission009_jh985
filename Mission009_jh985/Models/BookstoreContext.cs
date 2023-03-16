@@ -20,6 +20,7 @@ namespace Mission009_jh985.Models
         }
 
         public DbSet<Book> Books { get; set; }
+        public DbSet<Donation>Donations { get; set; }
 
     }
 }

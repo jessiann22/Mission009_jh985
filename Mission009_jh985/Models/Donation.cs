@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mission009_jh985.Models
 {
-    public class Donationcs
+    public class Donation
     {
         [Key]
         [BindNever]
