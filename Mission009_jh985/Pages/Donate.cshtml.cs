@@ -30,6 +30,7 @@ namespace Mission009_jh985.Pages
             Book b = repo.Books.FirstOrDefault(x => x.BookId == bookId);
 
             basket.AddItem(b, 1);
+            HttpContext.Session.SetJson("basket", basket);
                 
             return RedirectToPage(new { ReturnUrl = returnUrl });
         }
