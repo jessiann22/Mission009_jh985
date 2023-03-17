@@ -9,9 +9,22 @@ namespace Mission009_jh985.Controllers
 {
     public class DonationController : Controller
     {
+
+        public DonationController()
+        {
+
+        }
+
+        [HttpGet]
         public IActionResult Checkout()
         {
             return View(new Donation());
+        }
+
+        [HttpPost]
+        public IActionResult Checkout(Donation donation)
+        {
+
         }
     }
 }
