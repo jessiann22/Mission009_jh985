@@ -34,6 +34,7 @@ namespace Mission009_jh985
             });
 
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
+            services.AddScoped<IDonationRepository, EFDonationRepository>();
 
             services.AddRazorPages();
 

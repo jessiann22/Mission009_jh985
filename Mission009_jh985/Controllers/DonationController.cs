@@ -9,10 +9,12 @@ namespace Mission009_jh985.Controllers
 {
     public class DonationController : Controller
     {
-
-        public DonationController()
+        private IDonationRepository repo { get; set; }
+        private Basket basket { get; set; }
+        public DonationController(IDonationRepository temp, Basket b)
         {
-
+            repo = temp;
+            basket = b;
         }
 
         [HttpGet]
@@ -24,7 +26,23 @@ namespace Mission009_jh985.Controllers
         [HttpPost]
         public IActionResult Checkout(Donation donation)
         {
+            if (basket.Items.Count() == 0)
+            {
+                ModelState.AddModelError("", "Sorry, your basket is empty!");
+            }
 
+            if(ModelState.IsValid)
+            {
+                donation.Lines = basket.Items.ToArray();
+                repo.SaveDonation(donation);
+                basket.ClearBasket();
+
+                return RedirectToPage("/DonationCompleted");
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }
